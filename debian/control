@@ -26,7 +26,7 @@ Build-Depends: debhelper-compat (= 13),
                liblz4-dev,
                libzstd-dev,
                libssl-dev,
-               libfmt-dev (>= 11)
+               libfmt-dev (>= 10)
 Standards-Version: 4.7.3
 Homepage: https://github.com/leil-io/leilfs
 Rules-Requires-Root: no

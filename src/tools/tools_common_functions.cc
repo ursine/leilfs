@@ -23,6 +23,7 @@
 #include "tools/tools_common_functions.h"
 
 #include <errno.h>
+#include <fmt/core.h>
 #include <fcntl.h>
 #include <limits.h>
 #include <math.h>

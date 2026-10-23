@@ -21,7 +21,7 @@
 #include "common/platform.h"
 
 #include <errno.h>
-#include <fmt/base.h>
+#include <fmt/core.h>
 #include <limits.h>
 #include <signal.h>
 #include <stdlib.h>
