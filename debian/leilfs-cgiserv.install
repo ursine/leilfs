@@ -1,0 +1,5 @@
+usr/sbin/leil-cgiserver
+usr/sbin/saunafs-cgiserver
+usr/share/man/man8/leil-cgiserver.8
+usr/share/man/man8/saunafs-cgiserver.8
+etc/default/saunafs-cgiserv

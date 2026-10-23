@@ -1,0 +1,8 @@
+/.debhelper/
+/tmp/
+/leilfs-*/
+/*.substvars
+/*.debhelper
+/*.debhelper.log
+/files
+/debhelper-build-stamp

@@ -1,0 +1,4 @@
+# Settings for saunafs-cgiserv.service.
+BIND_HOST=127.0.0.1
+BIND_PORT=9425
+ROOT_PATH=/usr/share/leil-cgi

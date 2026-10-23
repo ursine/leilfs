@@ -1,0 +1,73 @@
+#!/usr/bin/make -f
+# Adapted from Debian SaunaFS 5.8.0-1.1 packaging (GPL-3.0-or-later).
+include /usr/share/dpkg/architecture.mk
+include /usr/share/dpkg/pkg-info.mk
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all optimize=-lto
+export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
+
+ifneq (,$(filter $(DEB_HOST_ARCH),armel mips mipsel powerpc powerpcspe sparc hppa m68k sh4))
+export DEB_LDFLAGS_MAINT_APPEND += -latomic
+endif
+
+BUILD_DIR = build/debian
+DEB_UPSTREAM_SUFFIX := $(shell printf '%s' '$(DEB_VERSION_UPSTREAM)' | sed -E 's/^[0-9]+\.[0-9]+\.[0-9]+//; s/^~/-/')
+
+%:
+	dh $@ --buildsystem=cmake --builddirectory=$(BUILD_DIR) --with bash-completion
+
+override_dh_auto_configure:
+	dh_auto_configure -- \
+		-DCMAKE_BUILD_TYPE=RelWithDebInfo \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DCMAKE_INSTALL_SYSCONFDIR=/etc \
+		-DCMAKE_INSTALL_LOCALSTATEDIR=/var \
+		-DCMAKE_INSTALL_LIBDIR=lib/$(DEB_HOST_MULTIARCH) \
+		-DENABLE_CLIENT_LIB=ON \
+		-DENABLE_URAFT=ON \
+		-DENABLE_TESTS=OFF \
+		-DENABLE_UTILS=OFF \
+		-DENABLE_NFS_GANESHA=OFF \
+		-DENABLE_DOCS=ON \
+		-DENABLE_CCACHE=OFF \
+		-DENABLE_PROMETHEUS=ON \
+		-DASCIIDOCTOR_AUTO_SETUP=OFF \
+		-DGENERATE_GIT_INFO=OFF \
+		-DVERSION_SUFFIX=$(DEB_UPSTREAM_SUFFIX) \
+		$(DEB_CMAKE_OPTIONS)
+
+override_dh_auto_install:
+	dh_auto_install --destdir=debian/tmp
+	# debhelper handles completion installation using the upstream definition.
+	rm -r debian/tmp/etc/bash_completion.d
+	install -d debian/tmp/etc/leil debian/tmp/etc/default debian/tmp/etc/sudoers.d
+	for role in master chunkserver metalogger; do \
+		install -m 0644 $(BUILD_DIR)/src/data/leil-$$role.cfg debian/tmp/etc/leil/; \
+	done
+	for config in goals topology globaliolimits hdd mount iolimits tls uraft; do \
+		install -m 0644 src/data/leil-$$config.cfg debian/tmp/etc/leil/; \
+	done
+	# The example exports allow unrestricted access: require explicit rules.
+	printf '%s\n' '# No clients are allowed until explicit export rules are added.' \
+		'# See /usr/share/doc/leil-master/examples/leil-exports.cfg.' \
+		> debian/tmp/etc/leil/leil-exports.cfg
+	install -m 0644 debian/leilfs-cgiserv.default debian/tmp/etc/default/saunafs-cgiserv
+	install -m 0440 debian/leilfs-uraft.sudoers debian/tmp/etc/sudoers.d/leilfs-uraft
+	# Set interpreter paths in the staged files, without editing source files.
+	sed -i '1s|#!/usr/bin/env python3|#!/usr/bin/python3|' \
+		debian/tmp/usr/sbin/leil-cgiserver debian/tmp/usr/share/leil-cgi/*.cgi
+	sed -i '1s|#!/usr/bin/env bash|#!/bin/bash|' debian/tmp/usr/sbin/leil-restoremaster
+
+override_dh_installchangelogs:
+	dh_installchangelogs NEWS
+
+override_dh_installsystemd:
+	dh_installsystemd --restart-after-upgrade --no-enable --no-start -pleilfs-master --name=saunafs-master
+	dh_installsystemd --restart-after-upgrade --no-enable --no-start -pleilfs-chunkserver --name=saunafs-chunkserver
+	dh_installsystemd --restart-after-upgrade --no-enable --no-start -pleilfs-metalogger --name=saunafs-metalogger
+	dh_installsystemd --restart-after-upgrade --no-enable --no-start -pleilfs-cgiserv --name=saunafs-cgiserv
+	dh_installsystemd --restart-after-upgrade --no-enable --no-start -pleilfs-uraft --name=saunafs-uraft
+	dh_installsystemd --restart-after-upgrade --no-enable --no-start -pleilfs-uraft --name=saunafs-ha-master
+
+override_dh_missing:
+	dh_missing --fail-missing

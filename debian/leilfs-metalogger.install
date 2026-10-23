@@ -1,0 +1,9 @@
+usr/sbin/leil-metalogger
+usr/sbin/sfsmetalogger
+usr/share/doc/leil-metalogger/examples
+usr/share/doc/saunafs-metalogger
+etc/leil/leil-metalogger.cfg
+usr/share/man/man5/sfsmetalogger.cfg.5
+usr/share/man/man8/sfsmetalogger.8
+usr/share/man/man5/leil-metalogger.cfg.5
+usr/share/man/man8/leil-metalogger.8

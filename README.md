@@ -146,6 +146,9 @@ Real POSIX semantics, so existing applications run unmodified.
 
 Use the [Installation Guide](INSTALL.md) for packages, dependencies, and full installation steps.
 
+For Debian/Ubuntu role packages with systemd integration, run
+`./packaging/deb/build.sh`. See [Debian packaging](packaging/deb/README.md).
+
 </td>
 <td width="33%" valign="top">
 

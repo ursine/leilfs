@@ -1,0 +1,3 @@
+# Allow the HA helper to manage floating addresses.
+saunafs ALL=(root) NOPASSWD: /sbin/ip, /usr/sbin/ip
+Defaults:saunafs !requiretty

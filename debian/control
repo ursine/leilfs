@@ -1,0 +1,121 @@
+Source: leilfs
+Maintainer: LeilFS Team <hello@leil.io>
+Section: admin
+Priority: optional
+Build-Depends: debhelper-compat (= 13),
+               bash-completion,
+               python3,
+               cmake,
+               pkgconf,
+               libcrcutil-dev [!hppa !m68k !mips !powerpc !ppc64 !s390 !s390x !sparc !sparc64],
+               libfuse3-dev,
+               libdb-dev,
+               libyaml-cpp-dev,
+               prometheus-cpp-dev,
+               libisal-dev [amd64],
+               libjudy-dev,
+               libpam-dev,
+               libspdlog-dev,
+               libsystemd-dev,
+               zlib1g-dev,
+               libboost-dev,
+               libboost-iostreams-dev,
+               libboost-filesystem-dev,
+               asciidoctor,
+               libboost-program-options-dev,
+               liblz4-dev,
+               libzstd-dev,
+               libssl-dev,
+               libfmt-dev (>= 11)
+Standards-Version: 4.7.3
+Homepage: https://github.com/leil-io/leilfs
+Rules-Requires-Root: no
+
+Package: leilfs-user
+Architecture: all
+Depends: ${misc:Depends}, adduser
+Description: service account and shared server setup
+ Creates the service account and installs PAM and resource limit configuration.
+ .
+ LeilFS is a distributed filesystem focused on reliability and data integrity.
+
+Package: leilfs-master
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, leilfs-user (= ${source:Version})
+Description: distributed filesystem metadata server
+ Includes the master, metadata dump, restore and recovery tools.
+ .
+ LeilFS is a distributed filesystem focused on reliability and data integrity.
+
+Package: leilfs-metalogger
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, leilfs-user (= ${source:Version})
+Description: distributed filesystem metadata backup server
+ Replicates master metadata for recovery.
+ .
+ LeilFS is a distributed filesystem focused on reliability and data integrity.
+
+Package: leilfs-chunkserver
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, leilfs-user (= ${source:Version})
+Description: distributed filesystem storage server
+ Stores filesystem chunks on configured local disks.
+ .
+ LeilFS is a distributed filesystem focused on reliability and data integrity.
+
+Package: leilfs-client
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, fuse3
+Recommends: bash-completion
+Description: distributed filesystem client and mount utility
+ Includes the FUSE mount utility, client tools and runtime client libraries.
+ .
+ LeilFS is a distributed filesystem focused on reliability and data integrity.
+
+Package: leilfs-client-dev
+Architecture: any
+Depends: ${misc:Depends}, leilfs-client (= ${binary:Version})
+Description: development headers for the filesystem client
+ Provides the C API headers and compatibility header names.
+ .
+ LeilFS is a distributed filesystem focused on reliability and data integrity.
+
+Package: leilfs-client-static
+Architecture: any
+Depends: ${misc:Depends}, leilfs-client-dev (= ${binary:Version})
+Description: static libraries for the filesystem client
+ Provides C and C++ client libraries, including position independent archives.
+ .
+ LeilFS is a distributed filesystem focused on reliability and data integrity.
+
+Package: leilfs-adm
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: distributed filesystem administration tools
+ Provides the administration and probe commands.
+ .
+ LeilFS is a distributed filesystem focused on reliability and data integrity.
+
+Package: leilfs-cgi
+Architecture: all
+Depends: ${misc:Depends}, python3, python3-chardet
+Description: distributed filesystem CGI monitoring interface
+ Provides CGI scripts and static web assets, independent of the HTTP server.
+ .
+ LeilFS is a distributed filesystem focused on reliability and data integrity.
+
+Package: leilfs-cgiserv
+Architecture: all
+Depends: ${misc:Depends}, python3, leilfs-cgi (= ${source:Version}), leilfs-user (= ${source:Version})
+Description: HTTP server for the filesystem monitoring interface
+ Runs the CGI monitor using a standalone HTTP server.
+ .
+ LeilFS is a distributed filesystem focused on reliability and data integrity.
+
+Package: leilfs-uraft
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, leilfs-master (= ${binary:Version}), leilfs-adm (= ${binary:Version}), iproute2, sudo
+Description: high availability management for the distributed filesystem
+ Provides the Raft-like HA daemon and floating address helper.
+ .
+ LeilFS is a distributed filesystem focused on reliability and data integrity.

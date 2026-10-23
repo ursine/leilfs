@@ -1,0 +1,14 @@
+[Unit]
+Description=LeilFS metalogger server daemon
+Documentation=man:leil-metalogger
+After=network.target
+Wants=network-online.target
+
+[Service]
+Type=notify
+ExecStart=/usr/sbin/leil-metalogger -d start
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target

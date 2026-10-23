@@ -1,0 +1,19 @@
+[Unit]
+Description=LeilFS chunkserver daemon
+Documentation=man:leil-chunkserver
+After=local-fs.target network.target saunafs-master.service
+Wants=local-fs.target network-online.target
+
+[Service]
+Type=notify
+ExecStart=/usr/sbin/leil-chunkserver -d start
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=on-abort
+OOMScoreAdjust=-999
+IOAccounting=true
+IOWeight=250
+StartupIOWeight=100
+KeyringMode=inherit
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,31 @@
+This packaging is adapted from Debian's SaunaFS 5.8.0-1.1 package:
+https://deb.debian.org/debian/pool/main/s/saunafs/saunafs_5.8.0-1.1.debian.tar.xz
+Packaging repository: https://salsa.debian.org/hpc-team/saunafs
+
+The original debian/copyright and changelog history are retained. Debian's
+packaging is GPL-3.0-or-later; see the debian/* stanza in debian/copyright.
+
+LeilFS adaptations:
+* Package roles follow rpm/leilfs.spec, with client-dev as Debian's name for
+  client-devel. The former common account setup lives in leilfs-user.
+* CGI assets and the standalone web server are separate packages.
+* Current names and legacy aliases are both included in explicit manifests.
+* All files staged by CMake must be accounted for (dh_missing --fail-missing).
+* Runtime client libraries are retained in leilfs-client, because the static
+  client code can dlopen the mount helper. The RPM spec currently discards these.
+* Version metadata, paths, compiler options and dependencies match this checkout.
+* LTO is disabled: LTO links fail with undefined C++ string references in
+  richacl_string.cc; the same fat archive objects link successfully without LTO.
+  Debian hardening remains enabled.
+* No gtest source copying, historical source patches, legacy SysV scripts,
+  source-download targets or Debian-maintainer VCS metadata are imported.
+* Services are not enabled or started on initial install. Upgrades keep them
+  running during unpacking and restart previously running services afterward.
+  Removal/deconfiguration stops services through deb-systemd-invoke.
+* The service account and persistent data survive purge, unlike the original
+  common package script, which deleted the account.
+* Active configuration is installed as conffiles. Initial exports deny all
+  clients and the HTTP monitor binds to localhost until configured.
+
+The CMake build is shared with RPM. Debian builds use debhelper rather than
+CPack. No Debian source patches are applied to the current upstream checkout.

@@ -1,0 +1,8 @@
+usr/bin/leil-admin
+usr/bin/saunafs-admin
+usr/bin/leil-probe
+usr/bin/saunafs-probe
+usr/share/man/man8/leil-admin.8
+usr/share/man/man8/leil-probe.8
+usr/share/man/man8/saunafs-admin.8
+usr/share/man/man8/saunafs-probe.8

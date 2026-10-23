@@ -1,0 +1,42 @@
+leilfs (5.13.0~dev-2) unstable; urgency=medium
+
+  * Adapt Debian SaunaFS packaging to the LeilFS RPM package roles.
+  * Build role-specific DEBs with debhelper and preserve server data on purge.
+
+ -- LeilFS Team <hello@leil.io>  Thu, 22 Oct 2026 14:00:00 -0400
+
+saunafs (5.8.0-1.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Backport upstream fix for FTBFS with GCC 16. (Closes: #1143703)
+
+ -- Adrian Bunk <bunk@debian.org>  Mon, 12 Oct 2026 15:20:57 +0300
+
+saunafs (5.8.0-1) unstable; urgency=medium
+
+  [ Urmas Rist ]
+  * Team upload.
+  * Fix lintian errors about unsupported archs
+  * Add architecture-is-64-bit virtual package
+  * Update copyright for nfs-ganesha plugin
+  * Add missing copyright info
+  * Rename remaining LizardFS to SaunaFS
+  * Fix ulimit bug using old lizardfs user
+  * Fix chunkserver not stopping when sleeping
+  * Change upstream tag in gbp.conf
+  * Update dependencies and not-installed
+  * Add debian/lrc.conf
+  * Fix lintian error regarding invalid archs
+  * Update standards version to 4.7.3
+  * New upstream version (Closes: #1129856)
+
+  [ Anton Gladky ]
+  * Remove Priority and Rules-Requires-Root
+
+ -- Anton Gladky <gladk@debian.org>  Fri, 27 Mar 2026 20:07:55 +0100
+
+saunafs (5.1.2-1) unstable; urgency=medium
+
+  * Initial release (Closes: #1080956)
+
+ -- Urmas Rist <urmas@urist.ee>  Thu, 28 Aug 2025 16:32:26 +0000

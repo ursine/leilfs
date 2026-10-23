@@ -1,0 +1,17 @@
+[Unit]
+Conflicts=saunafs-ha-master.service
+Description=LeilFS master server daemon
+Documentation=man:leil-master
+After=network.target
+Wants=network-online.target
+
+[Service]
+Type=notify
+TimeoutSec=0
+ExecStart=/usr/sbin/leil-master -d start
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=no
+OOMScoreAdjust=-999
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,181 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: LeilFS
+Upstream-Contact: LeilFS Team <hello@leil.io>
+Source: https://github.com/leil-io/leilfs
+
+Files: *
+Copyright: 2001-2010 Gemius S.A.
+           2013-2022 Skytechnology sp. z o.o.
+           2023-2025 Leil Storage OÜ
+           2005-2010 Jakub Kruszona-Zawadzki
+           2013-2014 EditShare
+                2002 Andrew Tridgell
+License: GPL-3
+
+Files: cmake/FindSocket.cmake
+Copyright: 2012, Caleb James DeLisle
+License: GPL-3+
+
+Files: utils/wireshark/plugins/epan/saunafs/CMakeLists.txt
+Copyright: 1998, Gerald Combs
+License: GPL-2+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ On Debian systems, the complete text of version 2 of the GNU General
+ Public License can be found in '/usr/share/common-licenses/GPL-2'.
+
+Files: tests/llvm.sh
+Copyright: 2025, LLVM Project
+License: Apache-2.0
+
+Files: src/nfs-ganesha/*
+Copyright: Copyright 2017 Skytechnology sp. z o.o.
+           Copyright 2023 Leil Storage OÜ
+License: LGPL-3+
+
+Files: src/nfs-ganesha/CMakeLists.txt
+Copyright: Copyright 2017 Skytechnology sp. z o.o.
+           Copyright 2023 Leil Storage OÜ
+License: GPL-3
+
+Files: external/crcutil-1.0/*
+Copyright: Copyright 2010 Google Inc.
+License: Apache-2.0
+
+Files: utils/ping_pong.cc
+Copyright: 2002 Andrew Tridgell
+           2015 Skytechnology sp. z o.o.
+           2023 Leil Storage OÜ
+License: GPL-3+
+
+Files:
+    src/common/galois_field_isal.cc
+Copyright:
+    2011-2015 Intel Corporation
+License: BSD-3-Clause~Intel
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+   * Redistributions of source code must retain the above copyright
+     notice, this list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above copyright
+     notice, this list of conditions and the following disclaimer in
+     the documentation and/or other materials provided with the
+     distribution.
+   * Neither the name of Intel Corporation nor the names of its
+     contributors may be used to endorse or promote products derived
+     from this software without specific prior written permission.
+  ․
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+Files:
+    src/common/coroutine.h
+Copyright:
+    2003-2015 Christopher M. Kohlhoff <chris@kohlhoff.com>
+License: BSL-1.0
+
+Files: debian/*
+Copyright: 2008      Gemius S.A.
+           2014-2017 Dmitry Smirnov <onlyjob@debian.org>
+           2013-2024 Skytechnology sp. z o.o.
+           2023-2024 Leil Storage OÜ
+           2024-2025 Urmas Rist <urmas@urist.ee>
+License: GPL-3+
+
+License: GPL-3+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ The complete text of the GNU General Public License version 3
+ can be found in "/usr/share/common-licenses/GPL-3".
+
+License: GPL-3
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, version 3 of the License.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ The complete text of the GNU General Public License version 3
+ can be found in "/usr/share/common-licenses/GPL-3".
+
+License: BSL-1.0
+ Permission is hereby granted, free of charge, to any person or organization
+ obtaining a copy of the software and accompanying documentation covered by
+ this license (the "Software") to use, reproduce, display, distribute,
+ execute, and transmit the Software, and to prepare derivative works of the
+ Software, and to permit third-parties to whom the Software is furnished to
+ do so, all subject to the following:
+ .
+ The copyright notices in the Software and this entire statement, including
+ the above license grant, this restriction and the following disclaimer,
+ must be included in all copies of the Software, in whole or in part, and
+ all derivative works of the Software, unless such copies or derivative
+ works are solely in the form of machine-executable object code generated by
+ a source language processor.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT. IN NO EVENT
+ SHALL THE COPYRIGHT HOLDERS OR ANYONE DISTRIBUTING THE SOFTWARE BE LIABLE
+ FOR ANY DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT, TORT OR OTHERWISE,
+ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ DEALINGS IN THE SOFTWARE.
+
+License: Apache-2.0
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+ .
+       http://www.apache.org/licenses/LICENSE-2.0
+ .
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ .
+ The complete text of the Apache License, Version 2.0 can be found
+ in "/usr/share/common-licenses/Apache-2.0".
+
+License: LGPL-3+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 3 of the License, or (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+ .
+ The complete text of the GNU General Public License version 3
+ can be found in "/usr/share/common-licenses/LGPL-3".

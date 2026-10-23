@@ -1,0 +1,4 @@
+#!/bin/sh
+set -e
+# Keep the service account: metadata and chunk files can survive package purge.
+#DEBHELPER#

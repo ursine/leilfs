@@ -1,4 +1,4 @@
-set(CPACK_GENERATOR "DEB;RPM")
+set(CPACK_GENERATOR "RPM")
 set(CPACK_PACKAGE_NAME "${PROJECT_NAME}"
         CACHE STRING "Name of package to be built"
 )
@@ -13,10 +13,6 @@ set(CPACK_PACKAGE_CONTACT "hello@leil.io"
 
 set(CPACK_PACKAGE_VENDOR "The SaunaFS Team <${CPACK_PACKAGE_CONTACT}>"
         CACHE STRING "Vendor of package"
-)
-
-set(CPACK_DEBIAN_PACKAGE_MAINTAINER "${CPACK_PACKAGE_VENDOR}"
-        CACHE STRING "Maintainer of package"
 )
 
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/COPYING")
@@ -40,17 +36,6 @@ set(CPACK_PACKAGE_VERSION_MINOR ${PACKAGE_VERSION_MINOR})
 set(CPACK_PACKAGE_VERSION_PATCH ${PACKAGE_VERSION_MICRO})
 
 set(CPACK_COMPONENTS_GROUPING IGNORE)
-
-set(CPACK_DEB_COMPONENT_INSTALL ON)
-set(CPACK_DEBIAN_PACKAGE_VERSION "${PACKAGE_VERSION}")
-set(CPACK_DEBIAN_FILE_NAME "DEB-DEFAULT")
-set(CPACK_DEBIAN_COMPRESSION_TYPE "xz")
-set(CPACK_DEBIAN_DEBUGINFO_PACKAGE ON)
-
-set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "amd64")
-## TODO(Baldor): Set dependencies for the package
-#set(CPACK_DEBIAN_PACKAGE_DEPENDS "asciidoctor, debhelper, cmake, libfuse3-dev, pkg-config, zlib1g-dev, libspdlog-dev, libfmt-dev, libboost-system-dev, libboost-program-options-dev, python3")
-set(CPACK_DEBIAN_ENABLE_COMPONENT_DEPENDS ON)
 
 # RPM configuration (client component)
 set(CPACK_RPM_COMPONENT_INSTALL ON)
@@ -92,5 +77,8 @@ if(NOT CPACK_COMPONENTS_ALL)
   list(REMOVE_ITEM CPACK_COMPONENTS_ALL "Unspecified")
 endif()
 
+configure_file(${CMAKE_SOURCE_DIR}/cmake/PackagingGenerators.cmake.in
+  ${CMAKE_BINARY_DIR}/PackagingGenerators.cmake @ONLY)
+set(CPACK_PROJECT_CONFIG_FILE "${CMAKE_BINARY_DIR}/PackagingGenerators.cmake")
 include(CPack)
 message(STATUS "Components to pack: ${CPACK_COMPONENTS_ALL}")

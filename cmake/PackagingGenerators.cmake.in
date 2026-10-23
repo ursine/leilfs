@@ -1,0 +1,3 @@
+if(CPACK_GENERATOR MATCHES "(^|;)DEB(;|$)")
+  message(FATAL_ERROR "Build Debian packages with packaging/deb/build.sh (debhelper), not CPack")
+endif()

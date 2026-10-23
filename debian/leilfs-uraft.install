@@ -1,0 +1,11 @@
+usr/sbin/leil-uraft
+usr/sbin/leil-uraft-helper
+usr/sbin/saunafs-uraft
+usr/sbin/saunafs-uraft-helper
+usr/share/doc/leil-uraft/examples
+usr/share/doc/saunafs-uraft
+usr/share/man/man8/*uraft*.8
+usr/share/man/man5/*uraft.cfg.5
+etc/leil/leil-uraft.cfg
+etc/sudoers.d/leilfs-uraft
+rpm/10-leilfs-uraft-arp.conf etc/sysctl.d
