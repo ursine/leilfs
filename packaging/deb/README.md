@@ -76,6 +76,18 @@ initial installation. For example, after configuring the chunkserver:
 sudo systemctl enable --now saunafs-chunkserver.service
 ```
 
+For multiple labeled chunkserver instances on one host, create one config per
+instance, for example `/etc/leil/leil-chunkserver-ssd.cfg` and
+`/etc/leil/leil-chunkserver-hdd.cfg`, with separate `DATA_PATH`,
+`HDD_CONF_FILENAME`, and `LABEL` values. Start them independently:
+
+```bash
+sudo systemctl enable --now saunafs-chunkserver@ssd.service
+sudo systemctl enable --now saunafs-chunkserver@hdd.service
+```
+
+Each instance has its own PID file under `/run/leil`.
+
 The ordinary and HA master units conflict to prevent simultaneous startup.
 HA is opt-in. Upgrades follow Debian's `--no-stop-on-upgrade` policy: running
 services stay up during unpacking and may be restarted after configuration.

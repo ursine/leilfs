@@ -75,6 +75,19 @@ Navigate to the */mnt/client* after starting services and try to create and dele
 systemctl status saunafs-master
 systemctl status saunafs-chunkserver
 ```
+
+To run multiple labeled chunkserver instances, create a separate configuration
+for each instance, such as `/etc/leil/leil-chunkserver-ssd.cfg` and
+`/etc/leil/leil-chunkserver-hdd.cfg`, with distinct `DATA_PATH`,
+`HDD_CONF_FILENAME`, and `LABEL` values. Then enable them independently:
+
+```bash
+sudo systemctl enable --now saunafs-chunkserver@ssd.service
+sudo systemctl enable --now saunafs-chunkserver@hdd.service
+```
+
+Each instance uses its own PID file under `/run/leil`. Do not run the legacy
+untemplated service against the same data path as an instance.
 > [!WARNING]
 > Names of the service files are a subject to change due to Leil rebranding.
 

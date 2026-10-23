@@ -208,13 +208,13 @@ LeilFS common user/group.
 ############################################################
 
 %post chunkserver
-%systemd_post saunafs-chunkserver.service
+%systemd_post saunafs-chunkserver.service saunafs-chunkserver@.service
 
 %preun chunkserver
-%systemd_preun saunafs-chunkserver.service
+%systemd_preun saunafs-chunkserver.service saunafs-chunkserver@.service
 
 %postun chunkserver
-%systemd_postun_with_restart saunafs-chunkserver.service
+%systemd_postun_with_restart saunafs-chunkserver.service saunafs-chunkserver@.service
 
 # Scriptlets - CGI server
 ############################################################
@@ -408,6 +408,7 @@ rm -f %{buildroot}%{_libdir}/libsaunafsmount_shared.so
 %{_sbindir}/leil-chunkserver
 %{_sbindir}/sfschunkserver
 %{_unitdir}/saunafs-chunkserver.service
+%{_unitdir}/saunafs-chunkserver@.service
 %dir %{leil_confdir}
 %attr(-,%{leil_user},%{leil_group}) %dir %{leil_datadir}
 %{_mandir}/man5/sfschunkserver.cfg.5*

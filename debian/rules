@@ -64,6 +64,7 @@ override_dh_installchangelogs:
 override_dh_installsystemd:
 	dh_installsystemd --restart-after-upgrade --no-enable --no-start -pleilfs-master --name=saunafs-master
 	dh_installsystemd --restart-after-upgrade --no-enable --no-start -pleilfs-chunkserver --name=saunafs-chunkserver
+	dh_installsystemd --restart-after-upgrade --no-enable --no-start -pleilfs-chunkserver --name=saunafs-chunkserver@
 	dh_installsystemd --restart-after-upgrade --no-enable --no-start -pleilfs-metalogger --name=saunafs-metalogger
 	dh_installsystemd --restart-after-upgrade --no-enable --no-start -pleilfs-cgiserv --name=saunafs-cgiserv
 	dh_installsystemd --restart-after-upgrade --no-enable --no-start -pleilfs-uraft --name=saunafs-uraft

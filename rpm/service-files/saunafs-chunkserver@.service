@@ -1,0 +1,14 @@
+[Unit]
+Description=LeilFS chunkserver daemon (%i)
+Documentation=man:leil-chunkserver(8) man:leil-chunkserver.cfg(5) man:leil-hdd.cfg(5)
+After=network-online.target
+
+[Service]
+Type=notify
+RuntimeDirectory=leil
+ExecStart=/usr/sbin/leil-chunkserver -c /etc/leil/leil-chunkserver-%i.cfg -p /run/leil/leil-chunkserver-%i.pid -d start
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target

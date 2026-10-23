@@ -18,7 +18,7 @@ BINARIES = {
     'cgiserv': ('usr/sbin/leil-cgiserver',),
     'uraft': ('usr/sbin/leil-uraft', 'usr/sbin/leil-uraft-helper'),
 }
-UNITS = {'master': ('saunafs-master',), 'chunkserver': ('saunafs-chunkserver',),
+UNITS = {'master': ('saunafs-master',), 'chunkserver': ('saunafs-chunkserver', 'saunafs-chunkserver@'),
          'metalogger': ('saunafs-metalogger',), 'cgiserv': ('saunafs-cgiserv',),
          'uraft': ('saunafs-uraft', 'saunafs-ha-master')}
 
@@ -97,7 +97,11 @@ def check(directory):
                         command = line.split('=', 1)[1].split()[0].lstrip('/')
                         assert command in owners, (unit, command)
         assert expected_configs == registered_configs, (expected_configs - registered_configs)
-        assert len([path for path in files if path.endswith('.service')]) == 6
+        assert len([path for path in files if path.endswith('.service')]) == 7
+        chunk_template = contents[next(path for path in contents
+                                       if path.endswith('/saunafs-chunkserver@.service'))]
+        assert '-c /etc/leil/leil-chunkserver-%i.cfg' in chunk_template
+        assert '-p /run/leil/leil-chunkserver-%i.pid' in chunk_template
         assert owners['usr/share/leil-cgi/leil.cgi'] == 'cgi'
         assert owners['usr/include/leil/leil_c_api.h'] == 'client-dev'
         assert owners['usr/share/bash-completion/completions/leil'] == 'client'

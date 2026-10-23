@@ -3,6 +3,7 @@ set -e
 case "$1" in
     remove|deconfigure)
         if [ -d /run/systemd/system ]; then
+            systemctl stop 'saunafs-chunkserver@*.service' >/dev/null 2>&1 || true
             deb-systemd-invoke stop saunafs-chunkserver.service >/dev/null || true
         fi
         ;;
